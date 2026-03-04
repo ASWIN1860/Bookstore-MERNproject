@@ -1,135 +1,178 @@
-import React, { useState } from "react";
-import Header from "../components/Header";
-import Footer from "../../components/Footer";
+import React, { useState } from 'react'
 import { FaRegEdit } from "react-icons/fa";
+import Header from '../components/Header';
+import Footer from '../../components/Footer';
+import { IoClose } from "react-icons/io5";
+
 
 function UserProfile() {
-  const [sellStatus, setSellStatus] = useState(true);
-  const [bookStatus, setBookStatus] = useState(false);
-  const [purchaseStatus, setPurchaseStatus] = useState(false);
+
+  const [sellbook, setSellbook] = useState(true)
+  const [bookstatus, setBookstatus] = useState(false)
+  const [purchasehis, setPurchasehis] = useState(false)
+  const[modalstatus,setmodalstatus]=useState(false)
+
   return (
     <>
       <Header />
 
-      <div className="min-h-[60vh]">
-        <div className="w-full bg-gray-600 h-[30vh] relative">
+      <div className='min-h-[60vh]'>
+
+        {/* Cover Section */}
+        <div className='w-full bg-gray-600 h-[40vh] relative'>
           <img
-            src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-            alt=""
-            className="rounded full absolute left-5 -bottom-25 w-40 ms-10 mb-10 "
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIf4R5qPKHPNMyAqV-FjS_OTBB8pfUV29Phg&s"
+            alt="profile"
+            className='rounded-full w-40 h-40 object-cover absolute left-5 -bottom-20 border-4 border-white'
           />
         </div>
-        <div className="mt-20 px-5 md:px-20">
-          <div className="flex justify-between">
-            <h1 className="font-bold text-2xl">John doe</h1>
-            <button className="text-blue-700 border-blue-600 rounded-sm px-3 py-2 flex">
+
+        {/* Profile Content */}
+        <div className='mt-24 px-5 md:px-20'>
+          <div className='flex justify-between px-5'>
+            <h1 className='text-2xl font-bold'>PARTHIV</h1>
+
+            <button className="text-blue-700 border border-blue-600 rounded-sm px-3 py-2 flex items-center gap-2" onClick={() =>setmodalstatus(true)}>
               <FaRegEdit />
-              edit
+                  Edit
             </button>
           </div>
-          <p className="text-justify my-3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias est
-            quos harum et veritatis deleniti deserunt voluptatum repellat
-            impedit! Consequuntur magni impedit, deserunt inventore a
-            consectetur! Ex minima quos aut? Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Nam cum quam blanditiis, optio dolore
-            obcaecati at perferendis ipsa, dignissimos distinctio delectus
-            quisquam veritatis qui maiores quod perspiciatis, architecto ad
-            nihil? Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Magni iste consectetur maxime minima quo sunt. Enim praesentium ab
-            possimus quidem laudantium perspiciatis dolor, consequuntur quis
-            dolorum dolorem, qui omnis quo.
+
+          <p className='text-justify my-3'>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Atque nobis laudantium praesentium possimus qui iure?
           </p>
         </div>
-        <div className="flex justify-center items-center my-10">
+
+        {/* Tabs */}
+        <div className='flex justify-center items-center my-5'>
+
           <div
-            className={
-              sellStatus
-                ? "p-3 border-gray-800 border-t border-l border-r border-t-sm text-blue-800"
-                : "p-3 border-b border-gray-800"
-            }
             onClick={() => {
-              setSellStatus(true);
-              setBookStatus(false);
-              setPurchaseStatus(false);
+              setSellbook(true);
+              setBookstatus(false);
+              setPurchasehis(false)
             }}
-          >
-            Sell Book
+            className={sellbook
+              ? 'p-3 border-l border-r border-t rounded-t-sm border-gray-600 text-blue-600'
+              : 'p-3 border-b border-gray-600 cursor-pointer'}>
+            SELL BOOK
           </div>
+
           <div
-            className={
-              bookStatus
-                ? "p-3 border-gray-800 border-t border-l border-r border-t-sm text-blue-800"
-                : "p-3 border-b border-gray-800"
-            }
             onClick={() => {
-              setSellStatus(false);
-              setBookStatus(true);
-              setPurchaseStatus(false);
+              setSellbook(false);
+              setBookstatus(true);
+              setPurchasehis(false)
             }}
-          >
-            Book Status
+            className={bookstatus
+              ? 'p-3 border-l border-r border-t rounded-t-sm border-gray-600 text-blue-600'
+              : 'p-3 border-b border-gray-600 cursor-pointer'}>
+            BOOK STATUS
           </div>
+
           <div
-            className={
-              purchaseStatus
-                ? "p-3 border-gray-800 border-t border-l border-r border-t-sm text-blue-800"
-                : "p-3 border-b border-gray-800"
-            }
             onClick={() => {
-              setSellStatus(false);
-              setBookStatus(false);
-              setPurchaseStatus(true);
+              setSellbook(false);
+              setBookstatus(false);
+              setPurchasehis(true)
             }}
-          >
-            Purchase History
+            className={purchasehis
+              ? 'p-3 border-l border-r border-t rounded-t-sm border-gray-600 text-blue-600'
+              : 'p-3 border-b border-gray-600 cursor-pointer'}>
+            PURCHASE HISTORY
           </div>
+
         </div>
-        {
-          sellStatus &&
-          <div className="px-5 md:px-50 mb-10 "> 
-            <div className="bg-gray-300 p-3 rounded">
-              <h1 className="text-center my-5 text-xl">Book Details</h1>
-              <div className="md:grid grid-cols-2 gap-3">
-                <div>
-                  <input type="text" className="p-3 bg-white placeholder-gray-400 rounded-sm mb-3 w-full" placeholder="Title"/>
-                  <input type="text" className="p-3 bg-white placeholder-gray-400 rounded-sm mb-3 w-full" placeholder="Author"/>
-                  <input type="text" className="p-3 bg-white placeholder-gray-400 rounded-sm mb-3 w-full" placeholder="No Of Pages"/>
-                  <input type="text" className="p-3 bg-white placeholder-gray-400 rounded-sm mb-3 w-full" placeholder="Image Url"/>
-                  <input type="text" className="p-3 bg-white placeholder-gray-400 rounded-sm mb-3 w-full" placeholder="Price"/>
-                  <input type="text" className="p-3 bg-white placeholder-gray-400 rounded-sm mb-3 w-full" placeholder="Discount Price"/>
-                  <textarea name="" id="" className="p-3 bg-white placeholder-gray-400 rounded-sm mb-3 w-full" rows={'7'} placeholder="Abstract"></textarea>
-                </div>
-                <div>
-                  <input type="text" className="p-3 bg-white placeholder-gray-400 rounded-sm mb-3 w-full" placeholder="Publisher"/>
-                  <input type="text" className="p-3 bg-white placeholder-gray-400 rounded-sm mb-3 w-full" placeholder="Language"/>
-                  <input type="text" className="p-3 bg-white placeholder-gray-400 rounded-sm mb-3 w-full" placeholder="ISBN"/>
-                  <input type="text" className="p-3 bg-white placeholder-gray-400 rounded-sm mb-3 w-full" placeholder="Category"/>
-                  <label htmlFor="imginp" className="flex justify-center mt-5">
-                    <input type="file" className="hidden" id="imginp"/>
-                    <img src="https://cdn.pixabay.com/photo/2016/01/03/00/43/upload-1118929_1280.png" alt="fileinput" className="w-[50%] cursor-pointer"/>
-                  </label>
-                </div>
-              </div>
-              <div className="flex py-4 justify-end gap-4 pe-4">
-                <button className="px-4 py-3 border bg-red-700 border-red-700 text-white rounded-sm hover:bg-white hover:text-red-700">Reset</button>
-                <button className="px-4 py-3 border bg-green-700 border-green-700 text-white rounded-sm hover:bg-white hover:text-green-700">Submit</button>
-              </div>
-            </div>
-          </div>
-        }
-        {
-          bookStatus &&
-          <div className="px-5 md:px-50 shadow-lg border border-gray-100 p-2 flex flex-col justify-center items-center">
-            <img src="https://i.pinimg.com/originals/b4/13/34/b41334a036d6796c281a6e5cbb36e4b5.gif" width={'150px'} alt="No_book" />
-            <h1 className="text-3xl text-red-500 font-bold pb-4">No Books Added Yet !!!</h1>
-          </div>
-        }
+{
+  sellbook &&
+  <div className='px-5 md:px-50 mb-10 '>
+    <div className='bg-gray-300 p-3'>
+      <h1 className='text-center my-5 text-xl'>Book Details</h1>
+      <div className='md:grid grid-cols-2 gap-3'>
+
+    <input type="text" className='p-3 bg-white placeholder-gray-700 rounded-sm mb-3 w-full' placeholder='Title'  />
+        <input type="text" className='p-3 bg-white placeholder-gray-700 rounded-sm mb-3 w-full' placeholder='Author'  />
+            <input type="text" className='p-3 bg-white placeholder-gray-700 rounded-sm mb-3 w-full' placeholder='No of pages'  />
+                <input type="text" className='p-3 bg-white placeholder-gray-700 rounded-sm mb-3 w-full' placeholder='Image url'  />
+                    <input type="text" className='p-3 bg-white placeholder-gray-700 rounded-sm mb-3 w-full' placeholder='Price'  />
+                        <input type="text" className='p-3 bg-white placeholder-gray-700 rounded-sm mb-3 w-full' placeholder='Discount price'  />
+                        <textarea name="" id="" className='w-full bg-white placeholder-green-400 rounded sm:p-3 ' rows={8} placeholder='Add'></textarea>
+       <label htmlFor="file input" className='flex justify-center'>
+        <input type="file" className='hidden' id="file input" />
+      <img src="https://imgs.search.brave.com/oC_G2K1uTtk4r6FECrddZRIJo9tJ9dGxfl2V4EPf9gs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wNjUv/OTc3Lzk0NS9zbWFs/bC9kb3dubG9hZC1h/bmQtaW5zdGFsbC1m/aWxlLW1hbmFnZXIt/Zm9yLWFuZHJvaWQt/ZnJlZS1wbmcucG5n" alt="file input
+      " className=' width-[80%] cursor-pointer ' />
+</label>
+  </div>
+    <div className='p-2 flex justify-end gap-3 '>
+    <button  className='p-3 border bg-red-700 border-red-700 text-white rounded-sm hover:bg-white hover:text-black'>Reset</button>
+        <button  className='p-3 border bg-green-700 border-red-700 text-white rounded-sm hover:bg-white hover:text-black'>submit</button>
+  </div>
+  </div>
+
+  </div>
+  
+}
+{
+  bookstatus &&
+  <div className='px-5 md:px-50 mb-10 flex flex-col border-l-amber-600 justify-center items-center'>
+    <img src="https://imgs.search.brave.com/pMtXoiNu9T2LbF2v_V_fFCyImrhxHQ8tZSzTpmmuDQo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmcu/cG5ndHJlZS5jb20v/cG5nLXZlY3Rvci8y/MDI1MTIwNC9vdXJt/aWQvcG5ndHJlZS1z/dGFjay1vZi1vcmFu/Z2UtYm9va3Mtd2l0/aC1vcGVuLWJvb2st/b24tdG9wLXBuZy1p/bWFnZV8xODExNDQ1/My53ZWJw" alt="" />
+    <h1 className='text-3xl text-red-600 '>No Books Added Yet!</h1>
+  </div>
+}
+{
+  purchasehis &&
+  <div className='px-5 md:px-50 mb-10 flex flex-col border-l-amber-600 justify-center items-center'>
+    <img src="https://imgs.search.brave.com/pMtXoiNu9T2LbF2v_V_fFCyImrhxHQ8tZSzTpmmuDQo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wbmcu/cG5ndHJlZS5jb20v/cG5nLXZlY3Rvci8y/MDI1MTIwNC9vdXJt/aWQvcG5ndHJlZS1z/dGFjay1vZi1vcmFu/Z2UtYm9va3Mtd2l0/aC1vcGVuLWJvb2st/b24tdG9wLXBuZy1p/bWFnZV8xODExNDQ1/My53ZWJw" alt="" />
+    <h1 className='text-3xl text-red-600 '>No Books Added Yet!</h1>
+  </div>
+}
+{
+
+             modalstatus &&
+                        <div className="relative z-10 ">
+                          <div className="bg-gray-500/75 fixed inset-0">
+                            <div className="flex justify-start items-center min-h-screen">
+                              <div className="bg-white rounded-2xl" style={{ height: '400px', width: '500px' }}>
+                                <div className="bg-black text-white flex justify-between items-center p-3 rounded-t-2xl">
+                                  <h1 className="text-xl">Application Form</h1>
+                                  <button onClick={() => { setmodalstatus(false) }}>
+                                    <IoClose />
+                                  </button>
+                                </div>
+                                <div className=" p-5 ">
+                                  <div className='gap-4 mb-5'>
+                                    <label htmlFor="">
+                                     <input type="file" className='hidden' id='profile-pic'/>
+                                     <img src="" alt="" />
+                                    </label>
+                                    <input type="text" placeholder='Full Name' className='p-2  border bg-white placeholder-gray-600 rounded-sm w-full mb-2 ' />
+                                    <input type="text" placeholder='Qualification' className='p-2 border bg-white placeholder-gray-600 rounded-sm w-full mb-2 ' />
+                                    <input type="text" placeholder='Email-Id' className='p-2 border bg-white placeholder-gray-600 rounded-sm w-full mb-2 ' />
+                                    <input type="text" placeholder='Phone Number' className='p-2 border bg-white placeholder-gray-600 rounded-sm w-full mb-2 ' />
+            
+                                  </div>
+                                  <input type="text" placeholder='Cover Letter' className='p-5 border bg-white placeholder-gray-600 rounded-sm w-full mb-2 ' />
+                                
+                                </div>
+                                <div className='bg-gray-200 p-3 flex justify-end gap-3 rounded-b-lg'>
+                                  <button className='p-2 rounded-sm border bg-orange-500 text-white hover:border-orange-500 hover:bg-white hover:text-orange-500'>Reset</button>
+                                  <button className='p-2 rounded-sm border border-red bg-green-500 text-white hover:border-green-500 hover:bg-white hover:text-green-500'>Submit</button>
+                                </div>
+            
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+           }
+
       </div>
 
       <Footer />
     </>
-  );
+  )
 }
 
-export default UserProfile;
+export default UserProfile
